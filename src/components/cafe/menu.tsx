@@ -5,7 +5,7 @@ import { scrollToSection } from "./scroll-link";
 
 export function MenuSection() {
   return (
-    <section id="menu" className="scroll-mt-20 bg-surface py-20 md:py-28">
+    <section id="menu" className="bg-surface pt-28 pb-20 md:pt-32 md:pb-28">
       <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
         <Reveal>
           <p className="text-xs font-semibold tracking-widest text-accent uppercase">The menu</p>

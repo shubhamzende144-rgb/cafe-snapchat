@@ -1,14 +1,14 @@
+import { Link } from "@tanstack/react-router";
 import { cafe } from "@/content/cafe";
 import { Logo } from "./logo";
-import { ScrollLink } from "./scroll-link";
 
 const links = [
-  { href: "#menu", label: "Menu" },
-  { href: "#about", label: "About" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#visit", label: "Visit" },
-];
+  { to: "/menu", label: "Menu" },
+  { to: "/", hash: "about", label: "About" },
+  { to: "/", hash: "gallery", label: "Gallery" },
+  { to: "/", hash: "reviews", label: "Reviews" },
+  { to: "/", hash: "visit", label: "Visit" },
+] as const;
 
 export function Footer() {
   return (
@@ -24,10 +24,14 @@ export function Footer() {
           <p className="text-xs font-semibold tracking-widest text-accent uppercase">Quick links</p>
           <ul className="mt-4 space-y-2">
             {links.map((link) => (
-              <li key={link.href}>
-                <ScrollLink id={link.href.slice(1)} className="text-sm text-ink hover:text-accent">
+              <li key={link.label}>
+                <Link
+                  to={link.to}
+                  hash={"hash" in link ? link.hash : undefined}
+                  className="text-sm text-ink hover:text-accent"
+                >
                   {link.label}
-                </ScrollLink>
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { cafe } from "@/content/cafe";
 import { cn } from "@/lib/cn";
 import { Logo } from "./logo";
-import { ScrollLink } from "./scroll-link";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#menu", label: "Menu" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#visit", label: "Visit" },
-];
+  { to: "/", hash: "about", label: "About" },
+  { to: "/menu", label: "Menu" },
+  { to: "/", hash: "gallery", label: "Gallery" },
+  { to: "/", hash: "reviews", label: "Reviews" },
+  { to: "/", hash: "visit", label: "Visit" },
+] as const;
 
 export function Navbar() {
   const [stuck, setStuck] = useState(false);
@@ -34,22 +34,19 @@ export function Navbar() {
   return (
     <header className={cn("nav-shell fixed inset-x-0 top-0 z-40", (stuck || open) && "is-stuck")}>
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 md:px-8">
-        <a href="#top" aria-label={`${cafe.name} home`} onClick={(event) => {
-          event.preventDefault();
-          setOpen(false);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}>
+        <Link to="/" aria-label={`${cafe.name} home`} onClick={() => setOpen(false)}>
           <Logo />
-        </a>
+        </Link>
         <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
           {links.map((link) => (
-            <ScrollLink
-              key={link.href}
-              id={link.href.slice(1)}
+            <Link
+              key={link.label}
+              to={link.to}
+              hash={"hash" in link ? link.hash : undefined}
               className="text-sm font-medium text-muted transition-colors hover:text-ink"
             >
               {link.label}
-            </ScrollLink>
+            </Link>
           ))}
         </nav>
         <a href={cafe.whatsapp} className="btn btn-fill hidden md:inline-flex" target="_blank" rel="noreferrer">
@@ -75,14 +72,15 @@ export function Navbar() {
       >
         <nav className="flex flex-col" aria-label="Mobile">
           {links.map((link) => (
-            <ScrollLink
-              key={link.href}
-              id={link.href.slice(1)}
+            <Link
+              key={link.label}
+              to={link.to}
+              hash={"hash" in link ? link.hash : undefined}
               className="border-b border-line py-3 text-lg font-medium"
-              onNavigate={() => setOpen(false)}
+              onClick={() => setOpen(false)}
             >
               {link.label}
-            </ScrollLink>
+            </Link>
           ))}
           <a
             href={cafe.whatsapp}

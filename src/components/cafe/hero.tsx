@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
 import { cafe, photos } from "@/content/cafe";
-import { ScrollLink } from "./scroll-link";
 
 const beans = [
   { className: "top-24 left-6 size-3", delay: "0s", duration: "8s" },
@@ -57,9 +57,9 @@ export function Hero() {
             A quiet cafe in Nehru Nagar for coffee, pizza, pasta, and the kind of afternoon you do not rush.
           </p>
           <div className="rise rise-6 mt-8 flex flex-col gap-3 sm:flex-row">
-            <ScrollLink id="menu" className="btn btn-fill">
+            <Link to="/menu" className="btn btn-fill">
               View Menu
-            </ScrollLink>
+            </Link>
             <a href={cafe.whatsapp} className="btn btn-ghost" target="_blank" rel="noreferrer">
               Order on WhatsApp
             </a>

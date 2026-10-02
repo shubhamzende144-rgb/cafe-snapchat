@@ -5,7 +5,6 @@ import { Footer } from "@/components/cafe/footer";
 import { Gallery } from "@/components/cafe/gallery";
 import { Hero } from "@/components/cafe/hero";
 import { Marquee } from "@/components/cafe/marquee";
-import { MenuSection } from "@/components/cafe/menu";
 import { Navbar } from "@/components/cafe/navbar";
 import { Reviews } from "@/components/cafe/reviews";
 import { Visit } from "@/components/cafe/visit";
@@ -26,7 +25,6 @@ function Home() {
         <Hero />
         <Marquee />
         <About />
-        <MenuSection />
         <Gallery />
         <Reviews />
         <Visit />
